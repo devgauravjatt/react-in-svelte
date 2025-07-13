@@ -17,7 +17,13 @@
 			],
 			wrapper: 'span',
 			speed: 50,
-			style: { fontSize: '2em', display: 'inline-block' },
+			style: {
+				fontSize: '2em',
+				display: 'inline-block',
+				fontWeight: 'bold',
+				color: '#2cbb3f',
+				paddingTop: '18px'
+			},
 			repeat: Infinity
 		});
 	};
@@ -26,10 +32,12 @@
 		const [count, setCount] = useState(0);
 		return createElement(
 			'div',
-			null,
+			{
+				className: 'counter'
+			},
 			createElement('h1', null, 'Counter'),
 			createElement('p', null, `Count: ${count}`),
-			createElement('button', { onClick: () => setCount(count + 1) }, 'Increment')
+			createElement('button', { onClick: () => setCount(count + 1), className: 'btn' }, 'Increment')
 		);
 	}
 
@@ -38,13 +46,10 @@
 	$effect(() => {
 		const root = createRoot(rootEl);
 
-		const welcome = createElement('p', { className: 'welcome' }, 'Welcome to Excalidraw');
-
 		root.render(
 			createElement(
 				StrictMode,
 				null,
-				welcome,
 				createElement(Counter, null),
 				createElement(ExampleComponent, null)
 			)
@@ -54,4 +59,11 @@
 	});
 </script>
 
-<div bind:this={rootEl} class="root"></div>
+<div class="my-10 flex flex-col gap-10">
+	<p class="welcome">Welcome to React with Svelte</p>
+	<p>
+		↓↓↓↓↓ this code client side with svelte and typing effect with react library
+		npm:react-type-animation ↓↓↓↓↓
+	</p>
+	<div bind:this={rootEl}></div>
+</div>
